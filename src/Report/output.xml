@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180409 11:22:04.078" generator="Robot 3.0.2 (Python 2.7.6 on win32)">
+<suite source="D:\Projects\api_checker\v3.0\src\Case" id="s1" name="Case">
+<suite source="D:\Projects\api_checker\v3.0\src\Case\Shop" id="s1-s1" name="Shop">
+<suite source="D:\Projects\api_checker\v3.0\src\Case\Shop\经纬度匹配站点.robot" id="s1-s1-s1" name="经纬度匹配站点">
+<test id="s1-s1-s1-t1" name="测试经纬度匹配站点">
+<kw name="经纬度匹配站点">
+<arguments>
+<arg>test</arg>
+<arg>116.523829</arg>
+<arg>39.929469</arg>
+<arg>57</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Post Json" library="http">
+<arguments>
+<arg>${env}</arg>
+<arg>Api/Shop/Istation_matchStation_POST</arg>
+<arg>lng=${lng}</arg>
+<arg>lat=${lat}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>'${path}'.split("/")[-2]</arg>
+</arguments>
+<assign>
+<var>${module}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.226" level="INFO">${module} = Shop</msg>
+<status status="PASS" endtime="20180409 11:22:04.226" starttime="20180409 11:22:04.226"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.227" level="INFO">D:\Projects\api_checker\v3.0\src\Public</msg>
+<status status="PASS" endtime="20180409 11:22:04.227" starttime="20180409 11:22:04.227"></status>
+</kw>
+<kw name="Json Load" library="http">
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public/../${path}.json</arg>
+</arguments>
+<assign>
+<var>${api}</var>
+</assign>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${path}</arg>
+</arguments>
+<assign>
+<var>${f}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.228" html="yes" level="INFO">Getting file '&lt;a href="file://D:\Projects\api_checker\v3.0\src\Api\Shop\Istation_matchStation_POST.json"&gt;D:\Projects\api_checker\v3.0\src\Api\Shop\Istation_matchStation_POST.json&lt;/a&gt;'.</msg>
+<msg timestamp="20180409 11:22:04.228" level="INFO">${f} = {
+  "url": "api/Istation/matchStation",
+  "headers": {
+    "Content-Type": "application/json;charset=utf-8"
+  },
+  "data": {
+    "lng": "116.123",
+    "lat": "39.890358"
+  }
+}</msg>
+<status status="PASS" endtime="20180409 11:22:04.228" starttime="20180409 11:22:04.227"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>json.loads('''${f}''')</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${api}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.228" level="INFO">${api} = {u'url': u'api/Istation/matchStation', u'headers': {u'Content-Type': u'application/json;charset=utf-8'}, u'data': {u'lat': u'39.890358', u'lng': u'116.123'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.228" starttime="20180409 11:22:04.228"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.229" level="INFO">${api} = {u'url': u'api/Istation/matchStation', u'headers': {u'Content-Type': u'application/json;charset=utf-8'}, u'data': {u'lat': u'39.890358', u'lng': u'116.123'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.229" starttime="20180409 11:22:04.227"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${api['data']}</arg>
+<arg>&amp;{data}</arg>
+</arguments>
+<status status="PASS" endtime="20180409 11:22:04.229" starttime="20180409 11:22:04.229"></status>
+</kw>
+<kw name="Config Load" library="http">
+<arguments>
+<arg>${env}</arg>
+<arg>${module}</arg>
+</arguments>
+<assign>
+<var>${config}</var>
+</assign>
+<kw name="Config Section" library="Config">
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public/../Conf/Env_${env}.conf</arg>
+<arg>${section}</arg>
+</arguments>
+<assign>
+<var>${config}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.231" level="INFO">${config} = {'accesskey': 'NTA3ZTU2ZWM5ZmVkYTVmMDBkMDM3YTBi', 'base_url': 'http://192.168.100.238:8089', 'accessid': 'station'}</msg>
+<status status="PASS" endtime="20180409 11:22:04.231" starttime="20180409 11:22:04.230"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.231" level="INFO">${config} = {'accesskey': 'NTA3ZTU2ZWM5ZmVkYTVmMDBkMDM3YTBi', 'base_url': 'http://192.168.100.238:8089', 'accessid': 'station'}</msg>
+<status status="PASS" endtime="20180409 11:22:04.231" starttime="20180409 11:22:04.229"></status>
+</kw>
+<kw name="Sign" library="Auth">
+<arguments>
+<arg>${config['accessid']}</arg>
+<arg>${config['accesskey']}</arg>
+<arg>${api['data']}</arg>
+</arguments>
+<assign>
+<var>${signed_data}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.232" level="INFO">${signed_data} = [{'auth-type': 0, 'sign': 'ADB5AA0DF1A790C4ECF736E4877BC8481FCEC335', 'appid': 'station'}, {u'lat': u'39.929469', u'lng': u'116.523829'}]</msg>
+<status status="PASS" endtime="20180409 11:22:04.232" starttime="20180409 11:22:04.231"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${config['base_url']}</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.232" level="INFO">Creating Session using : alias=url, url=http://192.168.100.238:8089, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180409 11:22:04.233" starttime="20180409 11:22:04.232"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>url</arg>
+<arg>${api['url']}</arg>
+<arg>data=${signed_data}</arg>
+<arg>headers=${api['headers']}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.282" level="INFO">Post Request using : alias=url, uri=api/Istation/matchStation, data=[{"auth-type": 0, "sign": "ADB5AA0DF1A790C4ECF736E4877BC8481FCEC335", "appid": "station"}, {"lat": "39.929469", "lng": "116.523829"}], headers={u'Content-Type': u'application/json;charset=utf-8'}, files=None, allow_redirects=True </msg>
+<msg timestamp="20180409 11:22:04.282" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.282" starttime="20180409 11:22:04.233"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.283" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.283" starttime="20180409 11:22:04.283"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_data}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.283" level="INFO">To JSON using : content={"code":100000,"message":"\u6210\u529f","data":{"station":"57","status":1}} </msg>
+<msg timestamp="20180409 11:22:04.283" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20180409 11:22:04.283" level="INFO">${resp_data} = {u'message': u'\u6210\u529f', u'code': 100000, u'data': {u'status': 1, u'station': u'57'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.284" starttime="20180409 11:22:04.283"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.284" level="INFO">${resp} = {u'message': u'\u6210\u529f', u'code': 100000, u'data': {u'status': 1, u'station': u'57'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.284" starttime="20180409 11:22:04.224"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['code']}</arg>
+<arg>100000</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.284" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.285" starttime="20180409 11:22:04.284"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['data']['station']}</arg>
+<arg>${station}</arg>
+</arguments>
+<status status="PASS" endtime="20180409 11:22:04.285" starttime="20180409 11:22:04.285"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['data']['status']}</arg>
+<arg>${status}</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.285" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.286" starttime="20180409 11:22:04.285"></status>
+</kw>
+<status status="PASS" endtime="20180409 11:22:04.286" starttime="20180409 11:22:04.224"></status>
+</kw>
+<status status="PASS" endtime="20180409 11:22:04.286" critical="yes" starttime="20180409 11:22:04.223"></status>
+</test>
+<status status="PASS" endtime="20180409 11:22:04.288" starttime="20180409 11:22:04.109"></status>
+</suite>
+<suite source="D:\Projects\api_checker\v3.0\src\Case\Shop\获取站点可售商品.robot" id="s1-s1-s2" name="获取站点可售商品">
+<test id="s1-s1-s2-t1" name="测试获取站点可售商品">
+<kw name="获取站点可售商品">
+<arguments>
+<arg>test</arg>
+<arg>116.523829</arg>
+<arg>39.929469</arg>
+<arg>57</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Post Json" library="http">
+<arguments>
+<arg>${env}</arg>
+<arg>Api/Shop/Istation_getGoodsCode_POST</arg>
+<arg>lng=${lng}</arg>
+<arg>lat=${lat}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>'${path}'.split("/")[-2]</arg>
+</arguments>
+<assign>
+<var>${module}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.298" level="INFO">${module} = Shop</msg>
+<status status="PASS" endtime="20180409 11:22:04.298" starttime="20180409 11:22:04.298"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.298" level="INFO">D:\Projects\api_checker\v3.0\src\Public</msg>
+<status status="PASS" endtime="20180409 11:22:04.298" starttime="20180409 11:22:04.298"></status>
+</kw>
+<kw name="Json Load" library="http">
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public/../${path}.json</arg>
+</arguments>
+<assign>
+<var>${api}</var>
+</assign>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${path}</arg>
+</arguments>
+<assign>
+<var>${f}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.299" html="yes" level="INFO">Getting file '&lt;a href="file://D:\Projects\api_checker\v3.0\src\Api\Shop\Istation_getGoodsCode_POST.json"&gt;D:\Projects\api_checker\v3.0\src\Api\Shop\Istation_getGoodsCode_POST.json&lt;/a&gt;'.</msg>
+<msg timestamp="20180409 11:22:04.300" level="INFO">${f} = {
+  "url": "api/Istation/getGoodsCode",
+  "headers": {
+    "Content-Type": "application/json;charset=utf-8"
+  },
+  "data": {
+    "area_name": "北京省",
+    "lng": "116.123",
+    "lat": "39.890358"
+  }
+}</msg>
+<status status="PASS" endtime="20180409 11:22:04.300" starttime="20180409 11:22:04.299"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>json.loads('''${f}''')</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${api}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.300" level="INFO">${api} = {u'url': u'api/Istation/getGoodsCode', u'headers': {u'Content-Type': u'application/json;charset=utf-8'}, u'data': {u'lat': u'39.890358', u'area_name': u'\u5317\u4eac\u7701', u'lng': u'116.123'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.300" starttime="20180409 11:22:04.300"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.301" level="INFO">${api} = {u'url': u'api/Istation/getGoodsCode', u'headers': {u'Content-Type': u'application/json;charset=utf-8'}, u'data': {u'lat': u'39.890358', u'area_name': u'\u5317\u4eac\u7701', u'lng': u'116.123'}}</msg>
+<status status="PASS" endtime="20180409 11:22:04.301" starttime="20180409 11:22:04.299"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${api['data']}</arg>
+<arg>&amp;{data}</arg>
+</arguments>
+<status status="PASS" endtime="20180409 11:22:04.301" starttime="20180409 11:22:04.301"></status>
+</kw>
+<kw name="Config Load" library="http">
+<arguments>
+<arg>${env}</arg>
+<arg>${module}</arg>
+</arguments>
+<assign>
+<var>${config}</var>
+</assign>
+<kw name="Config Section" library="Config">
+<arguments>
+<arg>D:\\Projects\\api_checker\\v3.0\\src\\Public/../Conf/Env_${env}.conf</arg>
+<arg>${section}</arg>
+</arguments>
+<assign>
+<var>${config}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.302" level="INFO">${config} = {'accesskey': 'NTA3ZTU2ZWM5ZmVkYTVmMDBkMDM3YTBi', 'base_url': 'http://192.168.100.238:8089', 'accessid': 'station'}</msg>
+<status status="PASS" endtime="20180409 11:22:04.302" starttime="20180409 11:22:04.302"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.303" level="INFO">${config} = {'accesskey': 'NTA3ZTU2ZWM5ZmVkYTVmMDBkMDM3YTBi', 'base_url': 'http://192.168.100.238:8089', 'accessid': 'station'}</msg>
+<status status="PASS" endtime="20180409 11:22:04.303" starttime="20180409 11:22:04.301"></status>
+</kw>
+<kw name="Sign" library="Auth">
+<arguments>
+<arg>${config['accessid']}</arg>
+<arg>${config['accesskey']}</arg>
+<arg>${api['data']}</arg>
+</arguments>
+<assign>
+<var>${signed_data}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.303" level="INFO">${signed_data} = [{'auth-type': 0, 'sign': '8C1D62D38CDCC86AA2AC57F17534CD3591AED6A2', 'appid': 'station'}, {u'lat': u'39.929469', u'area_name': u'\u5317\u4eac\u7701', u'lng': u'116.523829'}]</msg>
+<status status="PASS" endtime="20180409 11:22:04.303" starttime="20180409 11:22:04.303"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${config['base_url']}</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.304" level="INFO">Creating Session using : alias=url, url=http://192.168.100.238:8089, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180409 11:22:04.304" starttime="20180409 11:22:04.303"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>url</arg>
+<arg>${api['url']}</arg>
+<arg>data=${signed_data}</arg>
+<arg>headers=${api['headers']}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.349" level="INFO">Post Request using : alias=url, uri=api/Istation/getGoodsCode, data=[{"auth-type": 0, "sign": "8C1D62D38CDCC86AA2AC57F17534CD3591AED6A2", "appid": "station"}, {"lat": "39.929469", "area_name": "\u5317\u4eac\u7701", "lng": "116.523829"}], headers={u'Content-Type': u'application/json;charset=utf-8'}, files=None, allow_redirects=True </msg>
+<msg timestamp="20180409 11:22:04.349" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.349" starttime="20180409 11:22:04.304"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.350" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.350" starttime="20180409 11:22:04.349"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_data}</var>
+</assign>
+<msg timestamp="20180409 11:22:04.351" level="INFO">To JSON using : content={"code":100000,"message":"\u6210\u529f","data":{"status":1,"station_id":"57","category":"2","lat":"39.940888","lng":"116.519080","goods_code":["MX","MX2","MX4","MNX","MNX2","MNX4","SRX","SRX2","SRX4","SSX","SSX2","SSX4","XLKZT","LGMNW","OP","YB","YYX","XZS","NTJ","YS","HBC","DP","YXF","MJSB","HYJF","QZX","QCS","BBY","LL","YZ","SLZ","MXJP","MXJP2","LYJN500","HTSYJD","HTSYHH","MLQQX","SRQQXXF","MLQQXBZF","DMLPPX","XMLPPX","MLTDP","DJYPPX","XJYPPX","QZXLXZS","QZX2","QZX4","MXJP7Z","MXJP27Z","SLHLD","YSHG","GLTC","YSHGPZZ","MXMYZY","YSMYZY","NTJMYZY","YYXMYZY","LGMNWMYZY","XLKZTMYZY","YBMYZY","XZSMYZY","HBCMYZY","DPMYZY","QQSPTC","MNXMYZY","XB","KKKL"],"station_sell":[{"id":"8","station_id":"57","goods_id":"1","goods_code":"MX","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"39","station_id":"57","goods_id":"2","goods_code":"MX2","line_spice":"196.000000","down_spice":"0.000000","status":"1"},{"id":"67","station_id":"57","goods_id":"3","goods_code":"MX4","line_spice":"388.000000","down_spice":"0.000000","status":"1"},{"id":"108","station_id":"57","goods_id":"4","goods_code":"MNX","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"155","station_id":"57","goods_id":"5","goods_code":"MNX2","line_spice":"196.000000","down_spice":"0.000000","status":"1"},{"id":"183","station_id":"57","goods_id":"6","goods_code":"MNX4","line_spice":"388.000000","down_spice":"0.000000","status":"1"},{"id":"214","station_id":"57","goods_id":"7","goods_code":"SRX","line_spice":"109.000000","down_spice":"0.000000","status":"1"},{"id":"243","station_id":"57","goods_id":"8","goods_code":"SRX2","line_spice":"209.000000","down_spice":"0.000000","status":"1"},{"id":"273","station_id":"57","goods_id":"9","goods_code":"SRX4","line_spice":"399.000000","down_spice":"0.000000","status":"1"},{"id":"304","station_id":"57","goods_id":"10","goods_code":"SSX","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"325","station_id":"57","goods_id":"11","goods_code":"SSX2","line_spice":"196.000000","down_spice":"0.000000","status":"1"},{"id":"357","station_id":"57","goods_id":"12","goods_code":"SSX4","line_spice":"388.000000","down_spice":"0.000000","status":"1"},{"id":"423","station_id":"57","goods_id":"14","goods_code":"XLKZT","line_spice":"26.000000","down_spice":"0.000000","status":"1"},{"id":"585","station_id":"57","goods_id":"20","goods_code":"LGMNW","line_spice":"32.000000","down_spice":"0.000000","status":"1"},{"id":"645","station_id":"57","goods_id":"22","goods_code":"OP","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"676","station_id":"57","goods_id":"23","goods_code":"YB","line_spice":"22.000000","down_spice":"0.000000","status":"1"},{"id":"700","station_id":"57","goods_id":"24","goods_code":"YYX","line_spice":"36.000000","down_spice":"0.000000","status":"1"},{"id":"729","station_id":"57","goods_id":"25","goods_code":"XZS","line_spice":"15.000000","down_spice":"0.000000","status":"1"},{"id":"754","station_id":"57","goods_id":"26","goods_code":"NTJ","line_spice":"36.000000","down_spice":"0.000000","status":"1"},{"id":"776","station_id":"57","goods_id":"27","goods_code":"YS","line_spice":"39.000000","down_spice":"0.000000","status":"1"},{"id":"825","station_id":"57","goods_id":"29","goods_code":"HBC","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"870","station_id":"57","goods_id":"30","goods_code":"DP","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"1082","station_id":"57","goods_id":"37","goods_code":"YXF","line_spice":"16.000000","down_spice":"0.000000","status":"1"},{"id":"1099","station_id":"57","goods_id":"38","goods_code":"MJSB","line_spice":"8.000000","down_spice":"0.000000","status":"1"},{"id":"1140","station_id":"57","goods_id":"39","goods_code":"HYJF","line_spice":"18.000000","down_spice":"0.000000","status":"1"},{"id":"1468","station_id":"57","goods_id":"54","goods_code":"QZX","line_spice":"109.000000","down_spice":"0.000000","status":"1"},{"id":"1698","station_id":"57","goods_id":"62","goods_code":"QCS","line_spice":"8.000000","down_spice":"0.000000","status":"1"},{"id":"1738","station_id":"57","goods_id":"63","goods_code":"BBY","line_spice":"8.000000","down_spice":"0.000000","status":"1"},{"id":"1780","station_id":"57","goods_id":"64","goods_code":"LL","line_spice":"8.000000","down_spice":"0.000000","status":"1"},{"id":"1805","station_id":"57","goods_id":"65","goods_code":"YZ","line_spice":"8.000000","down_spice":"0.000000","status":"1"},{"id":"1913","station_id":"57","goods_id":"69","goods_code":"SLZ","line_spice":"6.000000","down_spice":"0.000000","status":"1"},{"id":"2007","station_id":"57","goods_id":"73","goods_code":"MXJP","line_spice":"199.000000","down_spice":"0.000000","status":"1"},{"id":"2047","station_id":"57","goods_id":"74","goods_code":"MXJP2","line_spice":"388.000000","down_spice":"0.000000","status":"1"},{"id":"2324","station_id":"57","goods_id":"91","goods_code":"LYJN500","line_spice":"9.900000","down_spice":"0.000000","status":"1"},{"id":"3021","station_id":"57","goods_id":"120","goods_code":"HTSYJD","line_spice":"999.000000","down_spice":"0.000000","status":"1"},{"id":"3022","station_id":"57","goods_id":"121","goods_code":"HTSYHH","line_spice":"1999.000000","down_spice":"0.000000","status":"1"},{"id":"3240","station_id":"57","goods_id":"135","goods_code":"MLQQX","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"6110","station_id":"57","goods_id":"608","goods_code":"SRQQXXF","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"12289","station_id":"57","goods_id":"631","goods_code":"MLQQXBZF","line_spice":"196.000000","down_spice":"0.000000","status":"1"},{"id":"13420","station_id":"57","goods_id":"671","goods_code":"DMLPPX","line_spice":"69.000000","down_spice":"0.000000","status":"1"},{"id":"13455","station_id":"57","goods_id":"672","goods_code":"XMLPPX","line_spice":"49.000000","down_spice":"0.000000","status":"1"},{"id":"13689","station_id":"57","goods_id":"233","goods_code":"MLTDP","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"16958","station_id":"57","goods_id":"722","goods_code":"DJYPPX","line_spice":"69.000000","down_spice":"0.000000","status":"1"},{"id":"16959","station_id":"57","goods_id":"723","goods_code":"XJYPPX","line_spice":"49.000000","down_spice":"0.000000","status":"1"},{"id":"23969","station_id":"57","goods_id":"892","goods_code":"QZXLXZS","line_spice":"0.000000","down_spice":"0.000000","status":"1"},{"id":"24023","station_id":"57","goods_id":"894","goods_code":"QZX2","line_spice":"209.000000","down_spice":"0.000000","status":"1"},{"id":"24024","station_id":"57","goods_id":"895","goods_code":"QZX4","line_spice":"399.000000","down_spice":"0.000000","status":"1"},{"id":"24256","station_id":"57","goods_id":"899","goods_code":"MXJP7Z","line_spice":"149.250000","down_spice":"0.000000","status":"1"},{"id":"24271","station_id":"57","goods_id":"900","goods_code":"MXJP27Z","line_spice":"271.600000","down_spice":"0.000000","status":"1"},{"id":"24318","station_id":"57","goods_id":"898","goods_code":"SLHLD","line_spice":"79.000000","down_spice":"0.000000","status":"1"},{"id":"24319","station_id":"57","goods_id":"901","goods_code":"YSHG","line_spice":"39.000000","down_spice":"0.000000","status":"1"},{"id":"24356","station_id":"57","goods_id":"902","goods_code":"GLTC","line_spice":"109.000000","down_spice":"0.000000","status":"1"},{"id":"24562","station_id":"57","goods_id":"912","goods_code":"YSHGPZZ","line_spice":"42.000000","down_spice":"0.000000","status":"1"},{"id":"24819","station_id":"57","goods_id":"915","goods_code":"MXMYZY","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"24824","station_id":"57","goods_id":"917","goods_code":"YSMYZY","line_spice":"39.000000","down_spice":"0.000000","status":"1"},{"id":"24825","station_id":"57","goods_id":"918","goods_code":"NTJMYZY","line_spice":"36.000000","down_spice":"0.000000","status":"1"},{"id":"24898","station_id":"57","goods_id":"916","goods_code":"YYXMYZY","line_spice":"36.000000","down_spice":"0.000000","status":"1"},{"id":"24899","station_id":"57","goods_id":"919","goods_code":"LGMNWMYZY","line_spice":"32.000000","down_spice":"0.000000","status":"1"},{"id":"24900","station_id":"57","goods_id":"920","goods_code":"XLKZTMYZY","line_spice":"26.000000","down_spice":"0.000000","status":"1"},{"id":"24901","station_id":"57","goods_id":"921","goods_code":"YBMYZY","line_spice":"22.000000","down_spice":"0.000000","status":"1"},{"id":"24902","station_id":"57","goods_id":"922","goods_code":"XZSMYZY","line_spice":"15.000000","down_spice":"0.000000","status":"1"},{"id":"24903","station_id":"57","goods_id":"923","goods_code":"HBCMYZY","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"24904","station_id":"57","goods_id":"924","goods_code":"DPMYZY","line_spice":"12.000000","down_spice":"0.000000","status":"1"},{"id":"25137","station_id":"57","goods_id":"736","goods_code":"QQSPTC","line_spice":"220.000000","down_spice":"0.000000","status":"1"},{"id":"25142","station_id":"57","goods_id":"822","goods_code":"MNXMYZY","line_spice":"99.000000","down_spice":"0.000000","status":"1"},{"id":"25374","station_id":"57","goods_id":"87","goods_code":"XB","line_spice":"4.900000","down_spice":"0.000000","status":"1"},{"id":"25375","station_id":"57","goods_id":"696","goods_code":"KKKL","line_spice":"4.900000","down_spice":"0.000000","status":"1"}]}} </msg>
+<msg timestamp="20180409 11:22:04.351" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20180409 11:22:04.351" level="INFO">${resp_data} = {u'message': u'\u6210\u529f', u'code': 100000, u'data': {u'status': 1, u'category': u'2', u'station_sell': [{u'status': u'1', u'down_spice': u'0.000000', u'goods_id': u'1', u'goods_code': u'MX', u'lin...</msg>
+<status status="PASS" endtime="20180409 11:22:04.351" starttime="20180409 11:22:04.350"></status>
+</kw>
+<msg timestamp="20180409 11:22:04.352" level="INFO">${resp} = {u'message': u'\u6210\u529f', u'code': 100000, u'data': {u'status': 1, u'category': u'2', u'station_sell': [{u'status': u'1', u'down_spice': u'0.000000', u'goods_id': u'1', u'goods_code': u'MX', u'lin...</msg>
+<status status="PASS" endtime="20180409 11:22:04.352" starttime="20180409 11:22:04.297"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['code']}</arg>
+<arg>100000</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.352" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.352" starttime="20180409 11:22:04.352"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['data']['station_id']}</arg>
+<arg>${station}</arg>
+</arguments>
+<status status="PASS" endtime="20180409 11:22:04.353" starttime="20180409 11:22:04.353"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp['data']['status']}</arg>
+<arg>${status}</arg>
+</arguments>
+<msg timestamp="20180409 11:22:04.353" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180409 11:22:04.353" starttime="20180409 11:22:04.353"></status>
+</kw>
+<status status="PASS" endtime="20180409 11:22:04.353" starttime="20180409 11:22:04.297"></status>
+</kw>
+<status status="PASS" endtime="20180409 11:22:04.354" critical="yes" starttime="20180409 11:22:04.295"></status>
+</test>
+<status status="PASS" endtime="20180409 11:22:04.355" starttime="20180409 11:22:04.289"></status>
+</suite>
+<status status="PASS" endtime="20180409 11:22:04.357" starttime="20180409 11:22:04.107"></status>
+</suite>
+<status status="PASS" endtime="20180409 11:22:04.358" starttime="20180409 11:22:04.079"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Case" pass="2">Case</stat>
+<stat fail="0" id="s1-s1" name="Shop" pass="2">Case.Shop</stat>
+<stat fail="0" id="s1-s1-s1" name="经纬度匹配站点" pass="1">Case.Shop.经纬度匹配站点</stat>
+<stat fail="0" id="s1-s1-s2" name="获取站点可售商品" pass="1">Case.Shop.获取站点可售商品</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
